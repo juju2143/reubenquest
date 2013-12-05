@@ -1,9 +1,11 @@
-Reuben Quest HD v0.0.1 alpha (Demo Release)
-===========================================
+Reuben Quest HD v0.0.1 alpha 2 (Demo Release)
+=============================================
 
 This is a port of Reuben Quest: Ev Awakening by Kévin Ouellet (originally on the TI-83+).
 
-Note that this isn't a finished release, so many graphics are still placeholders and many features aren't implemented yet.
+Note that this isn't a finished release, so many graphics are still placeholders and many features aren't implemented yet. The values used for battles aren't final, therefore they are pretty easy.
+
+For optimal playing, the framerate must be at 60 FPS.
 
 A game from Omnimaga: The Coders of Tomorrow.
 
@@ -15,16 +17,15 @@ Controls
 Esc: Pause menu
 Arrow keys: Move
 Left: Attack (in battle)
-Down: Heal (in battle)
+Up: Magic (in battle)
 Right: Flee (in battle, chances it fails)
 
 What works right now
 --------------------
 - Teleporting to another map
 - Battles
-- Attacking
+- One attack and one magic (healing)
 - Leveling
-- Healing
 - Pausing
 - Talking to NPCs
 - Some special effects
@@ -36,3 +37,4 @@ Credits
 ORIGNAL IDEA: DJ Omnimaga
 <br/>PROGRAMMING: Juju
 <br/>MUSIC: DJ Omnimaga
+<br/>GRAPHICS: DJ Omnimaga

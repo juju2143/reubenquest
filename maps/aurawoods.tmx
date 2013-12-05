@@ -480,6 +480,11 @@
     <property name="action" value="credits"/>
    </properties>
   </object>
+  <object type="action" x="432" y="672" width="16" height="20">
+   <properties>
+    <property name="action" value="credits"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="ground" width="64" height="88">
   <properties>

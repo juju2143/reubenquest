@@ -245,7 +245,7 @@ function love.keypressed(key)
 			monsterhp = monsterhp - level*5
 			hp = hp - monster[2]*2
 		end
-		if key == "down" then
+		if key == "up" then
 			if mp > 0 then
 				mp = mp - 1
 				hp = hp + 20
@@ -345,7 +345,7 @@ function love.update(dt)
 			mapY = mapY+1
 		end
 		if randomseed <= 0 then
-			monster = monsterstats[math.random(1, 2)]
+			monster = monsterstats[math.random(1, 4)]
 			monsterhp = monster[3]
 			gamestate = "battle"
 		end
@@ -393,9 +393,8 @@ function love.draw()
 		"powered by\nLÖVE",
 		"made for\nCemetech Contest #9",
 		"special thanks to\nDJ Omnimaga",
-		--"special thanks to\nAshbad",
-		--"special thanks to\nAnthony Dupras",
 		"special thanks to\nSorunome",
+		"special thanks to\nArt_of_camelot",
 		"special thanks to\nKerm Martian",
 		"special thanks to\neveryone else on Omnimaga and Cemetech",
 		"Reuben Quest: Ev Awakening",
@@ -536,14 +535,6 @@ function doAction(x, y)
 				mapX = object.properties.x-character.x
 				mapY = object.properties.y-character.y
 			elseif object.type == "npc" then
-						--[[love.graphics.setColor(0,0,255,127)
-						love.graphics.rectangle("fill", 16*scale, 144*scale, 224*scale, 64*scale)
-						love.graphics.setColor(255,255,255,255)
-						love.graphics.rectangle("line", 16*scale, 144*scale, 224*scale, 64*scale)
-						love.graphics.draw(dialog, 0, 0, 0, scale)
-						if object.properties.line1 then love.graphics.print(object.properties.line1, 20*scale, 148*scale) end
-						if object.properties.line2 then love.graphics.print(object.properties.line2, 20*scale, 164*scale) end
-						if object.properties.line3 then love.graphics.print(object.properties.line3, 20*scale, 176*scale) end--]]
 				showDialog(object.properties.msg)
 			elseif object.type == "battle" then
 				monster = monsterstats[object.properties.monster]

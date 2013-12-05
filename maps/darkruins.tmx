@@ -434,10 +434,20 @@
     <property name="y" value="1256"/>
    </properties>
   </object>
+  <object type="action" x="104" y="56" width="32" height="32">
+   <properties>
+    <property name="action" value="credits"/>
+   </properties>
+  </object>
+  <object type="npc" x="40" y="424" width="112" height="64">
+   <properties>
+    <property name="msg" value="You need an empty bottle to catch water."/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="ground" width="36" height="40">
   <data encoding="base64" compression="zlib">
-   eJzFmDEOwyAMRemaoVMm1khde5Sm979MM9SS9fMxDhgSyUqACL8a/GO6ppTWgXb1Ks2zFO7y7LEonudhj8NecM9qzGMRPF5/m+O5lwdZtnT+vauTN4KnNrd+b0Z8xBe7e7mj90+LMebWfG/h1zktey4nnu9MR6zxFh7JfzTsRw7MF/kNvTy78q/3r+7X/pAD92Du5GH+GZeVo5gbkeuFcZG8R78Z+iRuketlcbE4sDXs5bHiovs9ujWqHrhLryw/ujaxapBoHpwf/dS+IdE8TAORh63PSB7kkvZyI4/2Z30rau0IHv3tqe0Ppjuj9g9rt+hORL5b8840S0cizjtXzlOYJzmdta63XrX0C+sUvR9xnGlRDw+rOUvnMVyv0lgPz16wK/mBazqSh+kJM72mPTw1s/Sk9H4Lj8dHqza08Hj+Q5Dad/SlY4OxYu3ZPDpWmYzP5inpzB087Bys+2bzaPse9knnWM3gQXv/LSJ/I3gi9eTq9QNB2DEA
+   eJzFmMFuxCAMROm1h55y4rrSXvsp3f7/zzSHWhpNBuOAYSNZCRDhtwZPzB6llGOh3b1a83w27vYcsSyer9M+TnvSvcJYxDJ4ov4egedZHmZ5lOvvPYK8GTy9ufG9HfExX+oe5c7ePyOmmEfzfYQfc9r2XC0635WOeOMjPJb/bNzPHJwv9htmeV7gH/cv9qM/5uA9WCd5lH/F5eUo50bmenFcLO/Zb6U+i1vmenlcKg5qDWd5vLhgf0S3VtUD79Irzw/WJl4Nks3D87Of3jckm0dpIPOo9VnJw1zWbuXWDh70530reu0MHvz29PaH0p1V+0e1R3QnI9+9eXeapyMZ55075ynOk1quWjdbr3r6xXUK7kceV1o0w6NqztZ5jNerNTbD82rYnfzgNV3Jo/REGa7pDE/PPD1pvT/CE/Exqg0jPJH/EKz2XX1hbDhWqr2bB2NVxfhunpbOvINHnYOxbzcP2u9pP+Uaqx08bN//lpG/GTyZenL3+gOD5zEc
   </data>
  </layer>
 </map>
