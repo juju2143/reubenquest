@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="88" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="name" value="Aura Woods"/>
+ </properties>
+ <tileset firstgid="1" name="reubensheet" tilewidth="16" tileheight="16">
+  <image source="tiles.png" width="192" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="0"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="obstacle" value="0"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="obstacle" value="0"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="obstacle" value="0"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="73">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="76">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="77">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="78">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="79">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="80">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="81">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="82">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="83">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <objectgroup name="objects" width="64" height="88">
+  <object type="npc" x="336" y="928" width="16" height="16">
+   <properties>
+    <property name="char" value="7"/>
+    <property name="msg" value="I heard there is a treasure near the water pond."/>
+   </properties>
+  </object>
+  <object type="npc" x="512" y="1040" width="16" height="20">
+   <properties>
+    <property name="msg" value="It's too hot in the lava mine."/>
+   </properties>
+  </object>
+  <object type="npc" x="288" y="576" width="16" height="20">
+   <properties>
+    <property name="msg" value="Dawn! Maybe some switch could open that gate."/>
+   </properties>
+  </object>
+  <object type="npc" x="272" y="592" width="16" height="16">
+   <properties>
+    <property name="char" value="0"/>
+    <property name="line2" value="that gate! To open it we must go in the ruins."/>
+    <property name="msg" value="I need to see Tarlen but somebody closed that gate! To open it we must go in the ruins."/>
+   </properties>
+  </object>
+  <object type="action" x="656" y="1040" width="16" height="20">
+   <properties>
+    <property name="action" value="needfire"/>
+    <property name="msg" value="You need fire to melt ice."/>
+   </properties>
+  </object>
+  <object type="npc" x="32" y="1360" width="16" height="16">
+   <properties>
+    <property name="char" value="2"/>
+    <property name="msg" value="Those ruins are dangerous. Be careful."/>
+   </properties>
+  </object>
+  <object type="teleport" x="272" y="1232" width="16" height="20">
+   <properties>
+    <property name="map" value="darkruins"/>
+    <property name="x" value="96"/>
+    <property name="y" value="614"/>
+   </properties>
+  </object>
+  <object type="action" x="240" y="1088" width="16" height="20">
+   <properties>
+    <property name="action" value="goodnight"/>
+    <property name="msg" value="Good night."/>
+   </properties>
+  </object>
+  <object type="action" x="480" y="64" width="16" height="20">
+   <properties>
+    <property name="action" value="credits"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ground" width="64" height="88">
+  <properties>
+   <property name="area" value="Aura Woods"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+</map>

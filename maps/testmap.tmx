@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="24" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="name" value="Testland"/>
+ </properties>
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16">
+  <image source="tiles.png" width="192" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="0"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <objectgroup name="objects" width="24" height="24">
+  <object type="teleport" x="176" y="208" width="32" height="32">
+   <properties>
+    <property name="map" value="aurawoods"/>
+    <property name="x" value="520"/>
+    <property name="y" value="1064"/>
+   </properties>
+  </object>
+  <object type="npc" x="176" y="128" width="32" height="48">
+   <properties>
+    <property name="msg" value="Reuben! Welcome to the test map. There's a test teleporter inside."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ground" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzjYmBg4KIxZqQRRjafmvZwYTGfWnagm0ev8Bk1nzzzsaVjYtM2sWrIkRuM5pOaXwab+RJArEJD8w2A2IYG5pNb9g6G/DVqPvHpgVgzsZlPj/qRVuFDSwwAEQsHdw==
+  </data>
+ </layer>
+</map>
