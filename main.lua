@@ -53,12 +53,12 @@ function love.load()
 	actions = love.filesystem.load("actions.lua")()
 	
 	monsterstats = {
-	--	{name,		lvl, hp, xp, rate, x, y, width, height}
-		{"Smallguy",	1, 15, 1, 48, 0, 0, 64, 20},
-		{"Someguy",	2, 14, 2, 48, 0, 20, 64, 34},
-		{"Lolguy",	3, 20, 2, 48, 0, 54, 64, 36},
-		{"Bigguy",	4, 17, 3, 48, 0, 90, 64, 38},
-		{"Boss",	5, 150, 20, 0, 0, 128, 64, 36},
+	--	{name,		lvl, hp, xp, rate, x, y, width, height, boss}
+		{"Smallguy",	1, 15, 1, 48, 0, 0, 64, 20, 0},
+		{"Someguy",	2, 14, 2, 48, 0, 20, 64, 34, 0},
+		{"Lolguy",	3, 20, 2, 48, 0, 54, 64, 36, 0},
+		{"Bigguy",	4, 17, 3, 48, 0, 90, 64, 38, 0},
+		{"Boss",	5, 150, 20, 0, 0, 128, 64, 36, 1},
 	}
 	
 	moves = {
@@ -187,6 +187,24 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 pixel_coords)
 	icebeam:setSpin( math.rad(0.5), math.rad(1), 1 )
 	icebeam:setRadialAcceleration( 0 )
 	icebeam:setTangentialAcceleration( 0 )
+	
+	healbeam = love.graphics.newParticleSystem( fire, 800 )
+	healbeam:setPosition( 192*scale, 144*scale )
+	healbeam:setOffset( 0, 0 )
+	healbeam:setBufferSize( 1000 )
+	healbeam:setEmissionRate( 100 )
+	healbeam:setLifetime( 1 )
+	healbeam:setParticleLife( 0.5 )
+	healbeam:setColors( 255, 0, 0, 0, 255, 0, 255, 127 )
+	healbeam:setSizes( 1, 1, 1 )
+	healbeam:setSpeed( 150, 300  )
+	healbeam:setDirection( math.rad(270) )
+	healbeam:setSpread( math.rad(90) )
+	healbeam:setGravity( 0, 0 )
+	healbeam:setRotation( math.rad(0), math.rad(0) )
+	healbeam:setSpin( math.rad(0.5), math.rad(1), 1 )
+	healbeam:setRadialAcceleration( 0 )
+	healbeam:setTangentialAcceleration( 0 )
 end
 
 function love.keypressed(key)
@@ -228,15 +246,17 @@ function love.keypressed(key)
 			gamestate = "game"
 		end
 	elseif gamestate == "credits" then
-		character.y = character.y + 4
+		intromusic:stop()
 		gamestate = "game"
 	elseif gamestate == "battle" then
 		if key == "right" then
-			if math.random(0, 1) == 0 then
-				randomseed = math.random(80, 480)
-				gamestate = "game"
-			else
-				hp = hp - monster[2]*2
+			if monster[10] == 0 then
+				if math.random(0, 1) == 0 then
+					randomseed = math.random(80, 480)
+					gamestate = "game"
+				else
+					hp = hp - monster[2]*2
+				end
 			end
 		end
 		if key == "left" then
@@ -247,6 +267,8 @@ function love.keypressed(key)
 		end
 		if key == "up" then
 			if mp > 0 then
+				healbeam:reset()
+				healbeam:start()
 				mp = mp - 1
 				hp = hp + 20
 				if hp > leveltable[level][1] then hp = leveltable[level][1] end
@@ -261,9 +283,18 @@ function love.keypressed(key)
 				mp = leveltable[level][2]
 			end
 			randomseed = math.random(80, 480)
-			gamestate = "game"
+			if thisistheend then
+				thisistheend = nil
+				intromusic:play()
+				hp = leveltable[level][1]
+				mp = leveltable[level][2]
+				gamestate = "credits"
+			else
+				gamestate = "game"
+			end
 		end
 		if hp <= 0 then
+			thisistheend = nil
 			gamestate = "gameover"
 		end
 	elseif gamestate == "gameover" then
@@ -286,6 +317,7 @@ function love.update(dt)
 	introfx:send("time", gametime)
 	battlefx:send("time", gametime)
 	icebeam:update(dt)
+	healbeam:update(dt)
 	next_time = next_time + min_dt
 	if gamestate == "introcredits" then
 		if gametime >= 4 then
@@ -479,8 +511,8 @@ function love.draw()
 		love.graphics.print("PROGRAMMING", 40, (272-thetime)*scale)
 		love.graphics.print("Julien Savard", 40, (280-thetime)*scale)
 		love.graphics.print("GRAPHICS", 40, (296-thetime)*scale)
-		love.graphics.print("Adam Ruffa", 40, (304-thetime)*scale)
-		love.graphics.print("Kévin Ouellet", 40, (312-thetime)*scale)
+		love.graphics.print("Kévin Ouellet", 40, (304-thetime)*scale)
+		love.graphics.print("Sorunome", 40, (312-thetime)*scale)
 		love.graphics.print("MUSIC", 40, (328-thetime)*scale)
 		love.graphics.print("Kévin Ouellet", 40, (336-thetime)*scale)
 		love.graphics.print("Thanks for playing!", 40, (352-thetime)*scale)
@@ -498,6 +530,7 @@ function love.draw()
 		love.graphics.drawq(monsters, quad, 20*scale, 128*scale, 0, scale)
 		drawChar(character.id, 1, 3, 192, 144)
 		love.graphics.draw(icebeam, 0, 0)
+		love.graphics.draw(healbeam, 0, 0)
 	elseif gamestate == "gameover" then
 		love.graphics.print("GAME OVER", 88*scale, 108*scale)
 	end
@@ -537,6 +570,10 @@ function doAction(x, y)
 			elseif object.type == "npc" then
 				showDialog(object.properties.msg)
 			elseif object.type == "battle" then
+				map = loader.load(object.properties.map..".tmx")
+				mapX = object.properties.x-character.x
+				mapY = object.properties.y-character.y
+				thisistheend = object.properties.ending
 				monster = monsterstats[object.properties.monster]
 				monsterhp = monster[3]
 				gamestate = "battle"

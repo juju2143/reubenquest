@@ -1,5 +1,5 @@
-Reuben Quest HD v0.0.1 alpha 2 (Demo Release)
-=============================================
+Reuben Quest HD v0.0.1 alpha 3 (Cemetech Contest Release)
+=========================================================
 
 This is a port of Reuben Quest: Ev Awakening by Kévin Ouellet (originally on the TI-83+).
 
@@ -31,6 +31,7 @@ What works right now
 - Some special effects
 - 2 first maps
 - Original texture pack
+- First boss
 
 Credits
 -------
@@ -38,3 +39,9 @@ ORIGNAL IDEA: DJ Omnimaga
 <br/>PROGRAMMING: Juju
 <br/>MUSIC: DJ Omnimaga
 <br/>GRAPHICS: DJ Omnimaga
+
+Changelog
+---------
+2013/01/21: Alpha 3: Added a boss
+<br/>2013/01/20: Alpha 2: Various fixes
+<br/>2013/01/20: Alpha 1: First release
