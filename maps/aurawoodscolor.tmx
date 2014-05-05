@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="88" tilewidth="8" tileheight="8">
+ <properties>
+  <property name="name" value="Aura Woods"/>
+ </properties>
+ <tileset firstgid="1" source="reubencolortileset.tsx"/>
+ <objectgroup name="objects" width="64" height="88">
+  <object type="npc" x="168" y="464" width="8" height="8">
+   <properties>
+    <property name="char" value="7"/>
+    <property name="msg" value="I heard there is a treasure near the water pond."/>
+   </properties>
+  </object>
+  <object type="npc" x="256" y="520" width="8" height="12">
+   <properties>
+    <property name="msg" value="It's too hot in the lava mine."/>
+   </properties>
+  </object>
+  <object type="npc" x="144" y="288" width="8" height="12">
+   <properties>
+    <property name="msg" value="Dawn! Maybe some switch could open that gate."/>
+   </properties>
+  </object>
+  <object type="npc" x="136" y="296" width="8" height="8">
+   <properties>
+    <property name="char" value="0"/>
+    <property name="line2" value="that gate! To open it we must go in the ruins."/>
+    <property name="msg" value="I need to see Tarlen but somebody closed that gate! To open it we must go in the ruins."/>
+   </properties>
+  </object>
+  <object type="action" x="328" y="520" width="8" height="12">
+   <properties>
+    <property name="action" value="needfire"/>
+    <property name="msg" value="You need fire to melt ice."/>
+   </properties>
+  </object>
+  <object type="npc" x="16" y="680" width="8" height="8">
+   <properties>
+    <property name="char" value="2"/>
+    <property name="msg" value="Those ruins are dangerous. Be careful."/>
+   </properties>
+  </object>
+  <object type="teleport" x="136" y="616" width="8" height="12">
+   <properties>
+    <property name="map" value="darkruinscolor"/>
+    <property name="x" value="48"/>
+    <property name="y" value="307"/>
+   </properties>
+  </object>
+  <object type="action" x="120" y="544" width="8" height="10">
+   <properties>
+    <property name="action" value="goodnight"/>
+    <property name="msg" value="Good night."/>
+   </properties>
+  </object>
+  <object type="action" x="240" y="32" width="8" height="12">
+   <properties>
+    <property name="action" value="credits"/>
+   </properties>
+  </object>
+  <object type="action" x="216" y="336" width="8" height="12">
+   <properties>
+    <property name="action" value="credits"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ground" width="48" height="88">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+</map>

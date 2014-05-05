@@ -12,11 +12,11 @@ function love.load()
 	creditstime = 0
 	gamestate = "introcredits"
 	math.randomseed(os.time())
-	love.graphics.setDefaultImageFilter("nearest", "linear")
+	love.graphics.setDefaultFilter("nearest", "nearest")
 	
 	loader = require("AdvTiledLoader.Loader")
 	loader.path = "maps/"
-	map = loader.load("aurawoods.tmx")
+	map = loader.load("aurawoodscolor.tmx")
 	omnilogo = love.graphics.newImage("imgs/omnimaga_logo.png")
 	title = love.graphics.newImage("imgs/title.png")
 	characters = love.graphics.newImage("imgs/characters.png")
@@ -31,8 +31,8 @@ function love.load()
 	love.graphics.setFont(gamefont)
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.setBackgroundColor(0,0,0)
-	love.graphics.setCaption("Reuben Quest HD Edition")
-	love.graphics.setMode(256*scale, 224*scale, false)
+	love.window.setTitle("Reuben Quest HD Edition")
+	love.window.setMode(256*scale, 224*scale)
 	love.graphics.scale(scale, scale)
 	
 	character = {}
@@ -43,12 +43,12 @@ function love.load()
 	character.state = 1
 	names = {[0]="Eljin", "Merix", "Zormy", "Guil", "Ji", "Manu", "Kyra", "Miyuki"}
 	min_dt = 1/60
-	next_time = love.timer.getMicroTime()
+	next_time = love.timer.getTime()
 	isNight = true
 	light = 6
 
-	mapX = 192
-	mapY = 1024
+	mapX = 68
+	mapY = 468
 
 	actions = love.filesystem.load("actions.lua")()
 	
@@ -94,7 +94,7 @@ function love.load()
 	
 	randomseed = math.random(80, 480)
 	
-	transition = love.graphics.newPixelEffect [[
+	transition = love.graphics.newShader [[
 		extern number time;
         	vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 pixel_coords)
         	{
@@ -102,7 +102,7 @@ function love.load()
         	}
 	]]
 	
-	introfx = love.graphics.newPixelEffect [[
+	introfx = love.graphics.newShader [[
 		extern number time;
         	vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 pixel_coords)
         	{
@@ -110,7 +110,7 @@ function love.load()
         	}
 	]]
 	battlefx = introfx
-	--battlefx = love.graphics.newPixelEffect 
+	--battlefx = love.graphics.newShader 
 	--[[
 		extern number time;
 		
@@ -175,14 +175,14 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 pixel_coords)
 	icebeam:setOffset( 0, 0 )
 	icebeam:setBufferSize( 1000 )
 	icebeam:setEmissionRate( 100 )
-	icebeam:setLifetime( 1 )
-	icebeam:setParticleLife( 1 )
+	icebeam:setEmitterLifetime( 1 )
+	icebeam:setParticleLifetime( 1 )
 	icebeam:setColors( 0, 0, 255, 0, 0, 255, 255, 127 )
 	icebeam:setSizes( 1, 1, 1 )
 	icebeam:setSpeed( 150, 300  )
 	icebeam:setDirection( math.rad(180) )
 	icebeam:setSpread( math.rad(15) )
-	icebeam:setGravity( 0, 0 )
+	icebeam:setLinearAcceleration( 0, 0 )
 	icebeam:setRotation( math.rad(0), math.rad(0) )
 	icebeam:setSpin( math.rad(0.5), math.rad(1), 1 )
 	icebeam:setRadialAcceleration( 0 )
@@ -193,14 +193,14 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 pixel_coords)
 	healbeam:setOffset( 0, 0 )
 	healbeam:setBufferSize( 1000 )
 	healbeam:setEmissionRate( 100 )
-	healbeam:setLifetime( 1 )
-	healbeam:setParticleLife( 0.5 )
+	healbeam:setEmitterLifetime( 1 )
+	healbeam:setParticleLifetime( 0.5 )
 	healbeam:setColors( 255, 0, 0, 0, 255, 0, 255, 127 )
 	healbeam:setSizes( 1, 1, 1 )
 	healbeam:setSpeed( 150, 300  )
 	healbeam:setDirection( math.rad(270) )
 	healbeam:setSpread( math.rad(90) )
-	healbeam:setGravity( 0, 0 )
+	healbeam:setLinearAcceleration( 0, 0 )
 	healbeam:setRotation( math.rad(0), math.rad(0) )
 	healbeam:setSpin( math.rad(0.5), math.rad(1), 1 )
 	healbeam:setRadialAcceleration( 0 )
@@ -328,7 +328,7 @@ function love.update(dt)
 	elseif gamestate == "game" then
 		character.state = 1
 		if love.keyboard.isDown("left") then
-			if not detectCollision(character.x+mapX-8, character.y+mapY) then
+			if not detectCollision(character.x+mapX-4, character.y+mapY) then
 				character.x = character.x-1
 				randomseed = randomseed-1
 			end
@@ -336,7 +336,7 @@ function love.update(dt)
 			character.state = math.floor(gametime*4)%4
 		end
 		if love.keyboard.isDown("right") then
-			if not detectCollision(character.x+mapX+8, character.y+mapY) then
+			if not detectCollision(character.x+mapX+4, character.y+mapY) then
 				character.x = character.x+1
 				randomseed = randomseed-1
 			end
@@ -440,10 +440,10 @@ function love.draw()
 		love.graphics.setColor(math.abs(math.sin(thetime/duration*math.pi))*255, math.abs(math.sin(thetime/duration*math.pi))*255, math.abs(math.sin(thetime/duration*math.pi))*255)
 		--love.graphics.setColor(255, 255, 255)
 		wrapPrint(creditstext[math.floor(thetime/duration)+1] or "", 40, 40, 27, 16)
-		love.graphics.setPixelEffect(introfx)
+		love.graphics.setShader(introfx)
 		love.graphics.setColor(89, 125, 206)
 		love.graphics.rectangle('fill', 0, 112*scale, 256*scale, 72*scale)
-		love.graphics.setPixelEffect()
+		love.graphics.setShader()
 		love.graphics.setColor(48, 52, 109)
 		love.graphics.rectangle('fill', 0, 184*scale, 256*scale, 40*scale)
 		love.graphics.setColor(255, 255, 255)
@@ -455,7 +455,7 @@ function love.draw()
 	elseif gamestate == "game" or gamestate == "pause" then -- We're in the game
 		love.graphics.setFont(gamefont)
 		--love.graphics.translate(mapX, mapY)
-		map:autoDrawRange(-mapX, -mapY, scale, 50)
+		map:autoDrawRange(-mapX, -mapY, scale, 100)
 		love.graphics.push()
 		love.graphics.scale(scale)
 		love.graphics.translate(-mapX, -mapY)
@@ -466,15 +466,15 @@ function love.draw()
 		-- Draw the player
 		drawChar(character.id, character.state, character.orientation, character.x, character.y)
 		--charquad = love.graphics.newQuad((character.id%4)*72+character.state*24, math.floor(character.id/4)*128+character.orientation*32, 24, 32, 288, 256)
-		--love.graphics.drawq(characters, charquad, (character.x-12)*scale, (character.y-32)*scale, 0, scale)
+		--love.graphics.draw(characters, charquad, (character.x-12)*scale, (character.y-32)*scale, 0, scale)
 		-- Draw the NPCs
-		for i=1,#map.ol["objects"].objects do
-			object = map.ol["objects"].objects[i]
+		for i=1,#map("objects").objects do
+			object = map("objects").objects[i]
 			if object.type == "npc" and object.properties.char then
 				drawChar(object.properties.char, 1, 2, (object.x+object.width/2)-mapX, (object.y+object.height/2)-mapY)
 				if ((object.y+object.height/2)-mapY) >= 0 and ((object.y+object.height/2)-mapY) <= character.y then drawChar(character.id, character.state, character.orientation, character.x, character.y) end
 				--npcquad = love.graphics.newQuad((object.properties.char%4)*72+1*24, math.floor(object.properties.char/4)*128+2*32, 24, 32, 288, 256)
-				--love.graphics.drawq(characters, npcquad, ((object.x+object.width/2)-12)*scale, ((object.y+object.height/2)-32)*scale, 0, scale)
+				--love.graphics.draw(characters, npcquad, ((object.x+object.width/2)-12)*scale, ((object.y+object.height/2)-32)*scale, 0, scale)
 			end
 		end
 		doAction(mapX+character.x, mapY+character.y) -- Player steps in a NPC
@@ -519,25 +519,25 @@ function love.draw()
 		love.graphics.print("Made for Cemetech Contest #9", 40, (360-thetime)*scale)
 		if thetime >= 376 then creditstime = gametime end
 	elseif gamestate == "battle" then
-		love.graphics.setPixelEffect(battlefx)
+		love.graphics.setShader(battlefx)
 		love.graphics.rectangle('fill', 0, 0, 256*scale, 224*scale)
-		love.graphics.setPixelEffect()
+		love.graphics.setShader()
 		love.graphics.setFont(gamefont)
 		--love.graphics.print("HP: "..monsterhp, 40, 40) -- they shouldn't know that either
 		love.graphics.print("HP: "..hp, 288, 40)
 		love.graphics.print("MP: "..mp, 288, 56)
 		quad = love.graphics.newQuad(monster[6], monster[7], monster[8], monster[9], 64, 537)
-		love.graphics.drawq(monsters, quad, 20*scale, 128*scale, 0, scale)
+		love.graphics.draw(monsters, quad, 20*scale, 128*scale, 0, scale)
 		drawChar(character.id, 1, 3, 192, 144)
 		love.graphics.draw(icebeam, 0, 0)
 		love.graphics.draw(healbeam, 0, 0)
 	elseif gamestate == "gameover" then
 		love.graphics.print("GAME OVER", 88*scale, 108*scale)
 	end
-	love.graphics.setCaption("Reuben Quest HD Edition ("..love.timer.getFPS().." FPS)")
+	love.window.setTitle("Reuben Quest HD Edition ("..love.timer.getFPS().." FPS)")
 	--love.graphics.setFont(deffont)
 	--love.graphics.print("FPS "..love.timer.getFPS(), 0, -11) -- .."  GT "..gametime
-	local cur_time = love.timer.getMicroTime()
+	local cur_time = love.timer.getTime()
 	if next_time <= cur_time then
 		next_time = cur_time
 		return
@@ -550,14 +550,14 @@ function getDistance(x1, y1, x2, y2)
 end
 
 function detectCollision(x, y)
-	local tile = map.tl["ground"].tileData(math.floor(x/16), math.floor(y/16))
+	local tile = map("ground"):get(math.floor(x/8), math.floor(y/8))
 	if tile == nil then return true end
 	if tile.properties.obstacle == 1 then return true end
 	return false
 end
 
 function doAction(x, y)
-	objlayer = map.ol["objects"]
+	objlayer = map("objects")
 	for i=1,#objlayer.objects do
 		object = objlayer.objects[i]
 		if x >= object.x and x < object.x+object.width and y >= object.y and y < object.y+object.height then
@@ -584,7 +584,7 @@ end
 
 function drawChar(cid, state, orientation, x, y)
 	quad = love.graphics.newQuad((cid%4)*72+state*24, math.floor(cid/4)*128+orientation*32, 24, 32, 288, 256)
-	love.graphics.drawq(characters, quad, (x-12)*scale, (y-32)*scale, 0, scale)
+	love.graphics.draw(characters, quad, (x-12)*scale, (y-32)*scale, 0, scale)
 end
 
 function wrapPrint(message, x, y, limit, jump)

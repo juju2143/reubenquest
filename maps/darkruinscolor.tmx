@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="36" height="40" tilewidth="8" tileheight="8">
+ <tileset firstgid="1" source="reubencolortileset.tsx"/>
+ <objectgroup name="objects" width="36" height="40">
+  <object type="teleport" x="40" y="308" width="16" height="4">
+   <properties>
+    <property name="map" value="aurawoodscolor"/>
+    <property name="x" value="140"/>
+    <property name="y" value="628"/>
+   </properties>
+  </object>
+  <object type="battle" x="52" y="28" width="16" height="16">
+   <properties>
+    <property name="ending" value="1"/>
+    <property name="map" value="aurawoodscolor"/>
+    <property name="monster" value="5"/>
+    <property name="x" value="124"/>
+    <property name="y" value="556"/>
+   </properties>
+  </object>
+  <object type="npc" x="20" y="212" width="56" height="32">
+   <properties>
+    <property name="msg" value="You need an empty bottle to catch water."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ground" width="36" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzVWDEOwyAMROoL2jHqEqlDpY4dmTr3//9phlo6XY1DgjHpcCIQii+HOaBTSmn6A1wLpTzXwIvLe8GslHnB4/tcA08u50IpeFU8e3O5UF36Relj6cL9IvSZYBwuuU9U/rR8wyjgmpb1llPdeu/pBwxuZx7sFfINrXyeEB/zF9tnRUPkybxa84Xja7xq8tsj93leWBdZ9xyXdRDdPOfL4qXpIDmDc9jKx9IF20u/O4JHMa+IOHg2sc4g3nx4fI6ztod489E8kPlo89OTD/OSemltRfDBurVXrNU9+ODes5Yfmu/0yh+tbvXv6TtH8TPLRzzON1vvUzhPOf16XeucWP7F5xTMR36veVELH+3MWbr/cUxPD8Z9WcOe9RHBB/trWrKmvfNnb/8enFrG3oqa/yxa7wB7tKmtR/JBrbLyPppPyWdG8NHuwdgWzQdxW3BXtBqB0xej4h8JH/wApMU=
+  </data>
+ </layer>
+</map>
