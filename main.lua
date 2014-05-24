@@ -17,6 +17,8 @@ function love.load()
 	loader = require("AdvTiledLoader.Loader")
 	loader.path = "maps/"
 	map = loader.load("aurawoodscolor.tmx")
+	tileset = love.graphics.newImage("maps/reubencolorfulltilesheet.png")
+	introscene = loader.load("titlescreen.tmx")
 	omnilogo = love.graphics.newImage("imgs/omnimaga_logo.png")
 	title = love.graphics.newImage("imgs/title.png")
 	characters = love.graphics.newImage("imgs/characters.png")
@@ -38,10 +40,10 @@ function love.load()
 	character = {}
 	character.x = 56
 	character.y = 88
-	character.id = 1
+	character.id = 8
 	character.orientation = 2
 	character.state = 1
-	names = {[0]="Eljin", "Merix", "Zormy", "Guil", "Ji", "Manu", "Kyra", "Miyuki"}
+	names = {[0]="Eljin", "Merix", "Zormy", "Guil", "Ji", "Manu", "Kyra", "Miyuki", "Reuben"}
 	min_dt = 1/60
 	next_time = love.timer.getTime()
 	isNight = true
@@ -437,17 +439,23 @@ function love.draw()
 		if thetime >= #creditstext*duration-12 and thetime < #creditstext*duration then
 			intromusic:setVolume(1-((thetime-(#creditstext*duration-12))/12))
 		end
+		love.graphics.setColor(255, 255, 255)
+		introscene:autoDrawRange(0, 0, scale, 100)
+		love.graphics.push()
+		love.graphics.scale(scale)
+		introscene:draw()
+		love.graphics.pop()
 		love.graphics.setColor(math.abs(math.sin(thetime/duration*math.pi))*255, math.abs(math.sin(thetime/duration*math.pi))*255, math.abs(math.sin(thetime/duration*math.pi))*255)
 		--love.graphics.setColor(255, 255, 255)
 		wrapPrint(creditstext[math.floor(thetime/duration)+1] or "", 40, 40, 27, 16)
-		love.graphics.setShader(introfx)
-		love.graphics.setColor(89, 125, 206)
-		love.graphics.rectangle('fill', 0, 112*scale, 256*scale, 72*scale)
-		love.graphics.setShader()
-		love.graphics.setColor(48, 52, 109)
-		love.graphics.rectangle('fill', 0, 184*scale, 256*scale, 40*scale)
-		love.graphics.setColor(255, 255, 255)
-		drawChar(character.id, 1, 0, 236, 204)
+		--love.graphics.setShader(introfx)
+		--love.graphics.setColor(89, 125, 206)
+		--love.graphics.rectangle('fill', 0, 112*scale, 256*scale, 72*scale)
+		--love.graphics.setShader()
+		--love.graphics.setColor(48, 52, 109)
+		--love.graphics.rectangle('fill', 0, 184*scale, 256*scale, 40*scale)
+		--love.graphics.setColor(255, 255, 255)
+		--drawChar(character.id, 1, 0, 236, 204)
 		if thetime >= #creditstext*duration then
 			intromusic:stop()
 			gamestate = "game"
@@ -483,7 +491,7 @@ function love.draw()
 		love.graphics.rectangle("fill", 0, 0, 96, 16)
 		love.graphics.setColor(255, 255, 255, 255)
 		--love.graphics.print(names[character.id], 0, -3)
-		love.graphics.print("("..(mapX+character.x)..","..(mapY+character.y)..")", 0, 0)
+		--love.graphics.print("("..(mapX+character.x)..","..(mapY+character.y)..")", 0, 0)
 		if gamestate == "pause" then
 			love.graphics.setFont(gamefont)
 			--[[love.graphics.setColor(0, 0, 127, 191)
@@ -491,7 +499,8 @@ function love.draw()
 			love.graphics.setColor(255, 255, 255, 255)
 			love.graphics.setLine(4, "smooth")
 			love.graphics.rectangle("line", 32, 32, 448, 384)--]]
-			love.graphics.draw(pausemenu, 0, 0, 0, scale)
+			drawDialog(32, 32, 448, 384)
+			love.graphics.setColor(0, 0, 0)
 			love.graphics.print("STATUS", 40, 40)
 			love.graphics.print("Area: "..map.properties.name, 40, 56)
 			love.graphics.print("Lv: "..level, 40, 72)
@@ -500,7 +509,8 @@ function love.draw()
 			love.graphics.print("HP: "..hp.."/"..leveltable[level][1], 216, 72)
 			love.graphics.print("MP: "..mp.."/"..leveltable[level][2], 216, 88)
 			--love.graphics.print("Next: "..randomseed, 216, 104) -- people shouldn't be able to know that
-			drawChar(character.id, character.state, 2, 208+12, 24+32)
+			love.graphics.setColor(255, 255, 255)
+			drawBigChar(character.id, character.state, 2, 208+12, 24+32)
 		end
 	elseif gamestate == "credits" then
 		thetime = (gametime-creditstime)*16
@@ -528,7 +538,7 @@ function love.draw()
 		love.graphics.print("MP: "..mp, 288, 56)
 		quad = love.graphics.newQuad(monster[6], monster[7], monster[8], monster[9], 64, 537)
 		love.graphics.draw(monsters, quad, 20*scale, 128*scale, 0, scale)
-		drawChar(character.id, 1, 3, 192, 144)
+		drawBigChar(character.id, 1, 3, 192, 144)
 		love.graphics.draw(icebeam, 0, 0)
 		love.graphics.draw(healbeam, 0, 0)
 	elseif gamestate == "gameover" then
@@ -552,8 +562,9 @@ end
 function detectCollision(x, y)
 	local tile = map("ground"):get(math.floor(x/8), math.floor(y/8))
 	if tile == nil then return true end
-	if tile.properties.obstacle == 1 then return true end
-	return false
+	if tile.properties.obstacle == nil then return true end
+	if tile.properties.obstacle == 0 then return false end
+	return true
 end
 
 function doAction(x, y)
@@ -583,7 +594,18 @@ function doAction(x, y)
 end
 
 function drawChar(cid, state, orientation, x, y)
-	quad = love.graphics.newQuad((cid%4)*72+state*24, math.floor(cid/4)*128+orientation*32, 24, 32, 288, 256)
+	otable = {[0]=0, 3, 1, 2}
+	if cid == character.id then
+		quad = love.graphics.newQuad(248, 32+8*otable[orientation], 8, 8, 256, 256)
+		love.graphics.draw(tileset, quad, (x-4)*scale, (y-16)*scale, 0, scale)
+	else
+		quad = love.graphics.newQuad(8, 32, 8, 8, 256, 256)
+		love.graphics.draw(tileset, quad, (x-4)*scale, (y-8)*scale, 0, scale)
+	end
+end
+
+function drawBigChar(cid, state, orientation, x, y)
+	quad = love.graphics.newQuad((cid%4)*72+state*24, math.floor(cid/4)*128+orientation*32, 24, 32, 288, 384)
 	love.graphics.draw(characters, quad, (x-12)*scale, (y-32)*scale, 0, scale)
 end
 
@@ -598,14 +620,45 @@ function wrapPrint(message, x, y, limit, jump)
 	end
 end
 
+function drawDialog(x, y, width, height)
+	quad = love.graphics.newQuad(200, 16, 8, 8, 256, 256)
+	love.graphics.draw(tileset, quad, x, y, 0, scale)
+	quad = love.graphics.newQuad(208, 16, 8, 8, 256, 256)
+	for i=x+16, x+width-32, 16 do
+		love.graphics.draw(tileset, quad, i, y, 0, scale)
+	end
+	quad = love.graphics.newQuad(216, 16, 8, 8, 256, 256)
+	love.graphics.draw(tileset, quad, x+width-16, y, 0, scale)
+	for j=y+16, y+height-32, 16 do
+		quad = love.graphics.newQuad(200, 24, 8, 8, 256, 256)
+		love.graphics.draw(tileset, quad, x, j, 0, scale)
+		quad = love.graphics.newQuad(208, 24, 8, 8, 256, 256)
+		for i=x+16, x+width-32, 16 do
+			love.graphics.draw(tileset, quad, i, j, 0, scale)
+		end
+		quad = love.graphics.newQuad(216, 24, 8, 8, 256, 256)
+		love.graphics.draw(tileset, quad, x+width-16, j, 0, scale)
+	end
+	quad = love.graphics.newQuad(200, 32, 8, 8, 256, 256)
+	love.graphics.draw(tileset, quad, x, y+height-16, 0, scale)
+	quad = love.graphics.newQuad(208, 32, 8, 8, 256, 256)
+	for i=x+16, x+width-32, 16 do
+		love.graphics.draw(tileset, quad, i, y+height-16, 0, scale)
+	end
+	quad = love.graphics.newQuad(216, 32, 8, 8, 256, 256)
+	love.graphics.draw(tileset, quad, x+width-16, y+height-16, 0, scale)
+end
+
 function showDialog(message)
-	love.graphics.draw(dialog, 0, 0, 0, scale)
+	drawDialog(32, 288, 448, 128)
 	str = wrap(message, 27)
 	offset = 148
+	love.graphics.setColor(0, 0, 0)
 	for line in str:gmatch("[^\r\n]+") do
 		love.graphics.print(line, 20*scale, offset*scale)
 		offset = offset + 8
 	end
+	love.graphics.setColor(255, 255, 255)
 end
 
 function wrap(str, limit, indent, indent1)
