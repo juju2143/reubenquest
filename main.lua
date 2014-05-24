@@ -597,7 +597,7 @@ function drawChar(cid, state, orientation, x, y)
 	otable = {[0]=0, 3, 1, 2}
 	if cid == character.id then
 		quad = love.graphics.newQuad(248, 32+8*otable[orientation], 8, 8, 256, 256)
-		love.graphics.draw(tileset, quad, (x-4)*scale, (y-16)*scale, 0, scale)
+		love.graphics.draw(tileset, quad, (x-4)*scale, (y-8)*scale, 0, scale)
 	else
 		quad = love.graphics.newQuad(8, 32, 8, 8, 256, 256)
 		love.graphics.draw(tileset, quad, (x-4)*scale, (y-8)*scale, 0, scale)

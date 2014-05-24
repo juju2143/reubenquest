@@ -1,3 +1,4 @@
 [submodule "AdvTiledLoader"]
 	path = AdvTiledLoader
 	url = https://github.com/Kadoba/Advanced-Tiled-Loader.git
+	fetchRecurseSubmodules = true
